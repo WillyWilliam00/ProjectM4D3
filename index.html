@@ -13,6 +13,7 @@
 
 <body>
   <!--NAVBAR-->
+  <a name="top"></a>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Navbar</a>
@@ -47,29 +48,36 @@
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button type="button" class="btn btn-dark" onclick="search()">
+            <i class="bi bi-search"></i>
+          </button>
         </form>
       </div>
     </div>
   </nav>
-  <div class="ms-5 mt-5">
-    <label for="name" class="d-block">Search:</label>
-    <input type="text" id="name" name="name" class="w-25" placeholder="Cats, Dogs, Nature, ecc.." />
-    <button type="button" class="btn btn-dark" onclick="search()">
-      <i class="bi bi-search"></i>
-    </button>
-  </div>
-  <div class="container">
-    <div class="row">
+  
+    
+    <div class="container mt-5">
+      <div class="row">
+      </div>
     </div>
-  </div>
+  <main>  
+  </main>
+  <footer class="d-none mb-5">
+    <div class="d-flex w-100 justify-content-center mt-5 mb-5">
+      <button type="button" class="btn btn-dark next " onclick="next()">
+        NEXT PAGE
+      </button>
+    </div>
+    <div class="mx-5 d-flex justify-content-end">
+      <p class="page  fw-bold fs-2 m-0">Page:</p>
+      <button type="button" class="btn btn-dark next ms-5">
+        <a href="#top" class="text-decoration-none text-light">Go Up</a>
+      </button>
+    </div>
+    
+  </footer>
 
-  <div class="d-flex w-100 justify-content-center">
-    <button type="button" class="btn btn-dark next d-none">
-      NEXT PAGE
-    </button>
-  </div>
- 
 
 
 
