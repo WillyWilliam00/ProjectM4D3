@@ -1,9 +1,36 @@
 
-.card:hover{
-    scale: 1.05;
-    
-}
+
 .card {
-    scale: 1;
-    transition: scale 0.3s ease-in-out;
+    position: relative;
+}
+
+
+
+.button-save {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 45px;
+    font-weight: bold;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0;
+    cursor: pointer;
+    font-size: 21px;
+    z-index: 1;
+}
+
+
+
+.card:hover .button-save {
+    opacity: 1;
+}
+.card:hover img {
+    filter: brightness(50%);
 }

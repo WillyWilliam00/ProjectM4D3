@@ -15,26 +15,33 @@ function FirstFetch(object) {
             const photos = body.photos
             if (photos.length !== 0) {
                 const ArrayCards = photos.map(photo => /*html*/
-                 `<div class="col-3 mb-4">
-                                <div class="card"><img src="${photo.src.tiny}" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Photographer: ${photo.photographer}</h5>
-                                        <p class="card-text">${photo.alt}</p>
-                                    </div>
-                                </div>
-                            </div>`
+                `<div class="col-3 mb-4">
+                <div class="card">
+                    <div class="button-save" onclick= "save()">
+                        <i class="bi bi-bookmark"></i>
+                    </div>
+                    <img src="${photo.src.tiny}" class="card-img-top">
+                    <div class="card-body">
+                        
+                        <h5 class="card-title">Photographer: ${photo.photographer}</h5>
+                        <p class="card-text">${photo.alt}</p>
+                    </div>
+                </div>
+            </div>`
                 )
                 Row.innerHTML = ArrayCards.join("")
+                const Cards = document.querySelectorAll(".card")
                 pagenumber.innerHTML = /*html*/
-                 `Page: <span style="color: red;">${count}</span> | Quantity: <span style="color: red;">${count * 15}</span>`
+                 `Page: <span style="color: red;">${count}</span> | Quantity: <span style="color: red;">${Cards.length}</span>`
                 footer.classList.remove("d-none")
+                
             } else {
                 footer.classList.add("d-none")
                 Row.innerHTML = /*html*/
                     `<div class="col-12"><h4 class="text-center fw-bold">OOOPS! NON ABBIAMO TROVATO NIENTE, RIPROVA!</h4></div>`
 
             }
-
+            
         })
 }
 
@@ -46,18 +53,26 @@ function next() {
         .then(body => {
             const photos = body.photos
             const ArrayCards = photos.map(photo => /*html*/
-                    `<div class="col-3 mb-4">
-                        <div class="card"><img src="${photo.src.tiny}" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Photographer: ${photo.photographer}</h5>
-                                <p class="card-text">${photo.alt}</p>
-                            </div>
-                        </div>
-                    </div>`
+            `<div class="col-3 mb-4">
+            <div class="card">
+                <div class="button-save" onclick= "save()">
+                    <i class="bi bi-bookmark"></i>
+                </div>
+                <img src="${photo.src.tiny}" class="card-img-top">
+                <div class="card-body">
+                    
+                    <h5 class="card-title">Photographer: ${photo.photographer}</h5>
+                    <p class="card-text">${photo.alt}</p>
+                </div>
+            </div>
+        </div>`
             )
-            pagenumber.innerHTML = /*html*/
-             `Page: <span style="color: red;">${count}</span> | Quantity: <span style="color: red;">${count * 15}</span>`
             Row.innerHTML += ArrayCards.join("")
+            const Cards = document.querySelectorAll(".card")
+            pagenumber.innerHTML = /*html*/
+             `Page: <span style="color: red;">${count}</span> | Quantity: <span style="color: red;">${Cards.length}</span>`
+            
+            console.log(Cards.length)
         })
 
 }
@@ -67,7 +82,9 @@ function search() {
     if (SearchValue.value) {
         FirstFetch(SearchValue.value)
     } else {
-        alert("Scrivi qualcosa :) ")
+        Row.innerHTML = /*html*/
+        `<div class="col-12"><h4 class="text-center fw-bold">Scrivi qualcosa e premi il tasto cerca :)</h4></div>`
+        
     }
 }
 
