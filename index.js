@@ -16,18 +16,18 @@ function FirstFetch(object) {
             if (photos.length !== 0) {
                 const ArrayCards = photos.map(photo => /*html*/
                 `<div class="col-3 mb-4">
-                <div class="card">
-                    <div class="button-save" onclick= "save()">
-                        <i class="bi bi-bookmark"></i>
-                    </div>
-                    <img src="${photo.src.tiny}" class="card-img-top">
-                    <div class="card-body">
-                        
-                        <h5 class="card-title">Photographer: ${photo.photographer}</h5>
-                        <p class="card-text">${photo.alt}</p>
-                    </div>
-                </div>
-            </div>`
+                     <div class="card">
+                         <div class="button-save" >
+                             <i class="bi bi-bookmark" onclick="saveCard()" ></i>
+                         </div>
+                         <img src="${photo.src.tiny}" class="card-img-top">
+                         <div class="card-body">
+                             
+                             <h5 class="card-title">Photographer: ${photo.photographer}</h5>
+                             <p class="card-text">${photo.alt}</p>
+                         </div>
+                     </div>
+                 </div>`
                 )
                 Row.innerHTML = ArrayCards.join("")
                 const Cards = document.querySelectorAll(".card")
@@ -54,38 +54,47 @@ function next() {
             const photos = body.photos
             const ArrayCards = photos.map(photo => /*html*/
             `<div class="col-3 mb-4">
-            <div class="card">
-                <div class="button-save" onclick= "save()">
-                    <i class="bi bi-bookmark"></i>
+                <div class="card">
+                    <div class="button-save" >
+                        <i class="bi bi-bookmark" onclick="saveCard()" ></i>
+                    </div>
+                    <img src="${photo.src.tiny}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Photographer: ${photo.photographer}</h5>
+                        <p class="card-text">${photo.alt}</p>
+                    </div>
                 </div>
-                <img src="${photo.src.tiny}" class="card-img-top">
-                <div class="card-body">
-                    
-                    <h5 class="card-title">Photographer: ${photo.photographer}</h5>
-                    <p class="card-text">${photo.alt}</p>
-                </div>
-            </div>
-        </div>`
+            </div>`
             )
             Row.innerHTML += ArrayCards.join("")
             const Cards = document.querySelectorAll(".card")
             pagenumber.innerHTML = /*html*/
              `Page: <span style="color: red;">${count}</span> | Quantity: <span style="color: red;">${Cards.length}</span>`
             
-            console.log(Cards.length)
+            
         })
 
 }
 
 function search() {
-
     if (SearchValue.value) {
         FirstFetch(SearchValue.value)
     } else {
         Row.innerHTML = /*html*/
-        `<div class="col-12"><h4 class="text-center fw-bold">Scrivi qualcosa e premi il tasto cerca :)</h4></div>`
-        
+        `<div class="col-12"><h4 class="text-center fw-bold">Scrivi qualcosa e premi il tasto cerca</h4></div>`
     }
 }
 
-
+function saveCard() {
+    const ClickSave = event.target
+    if (count === 1) {
+        count = 2
+        ClickSave.className = "bi bi-bookmark-fill"
+        console.log(count)
+    } else if (count !== 1 ) {
+        count = 1
+        ClickSave.className = "bi bi-bookmark"
+        console.log(count)
+    }
+    
+}
